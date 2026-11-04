@@ -9,69 +9,60 @@ services:
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/UR5"
+      ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/UR5"
 
   joint_interface_example_2:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/LBRiiwa14R820"
+      ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/LBRiiwa14R820"
 
   joint_interface_example_3:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/Franka"
+      ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/Franka"
 
   joint_interface_example_4:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/NiryoOne"
+      ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/NiryoOne"
 
   joint_interface_example_5:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/UR10"
+      ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/UR10"
 
   joint_interface_example_6:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/IRB140"
+      ros2 run sas_robot_driver_coppeliasim joint_interface_example.py --ros-args -p robot_topic_name:=sas_robot_driver_coppeliasim/IRB140"
 
   object_interface_example_1:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim object_interface_example.py --ros-args -p object_topic_name:=sas_robot_driver_coppeliasim/object/ReferenceFrame"
+      ros2 run sas_robot_driver_coppeliasim object_interface_example.py --ros-args -p object_topic_name:=sas_robot_driver_coppeliasim/object/ReferenceFrame"
 
   object_interface_example_2:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim object_interface_example.py --ros-args -p object_topic_name:=sas_robot_driver_coppeliasim/object/Sphere"
+      ros2 run sas_robot_driver_coppeliasim object_interface_example.py --ros-args -p object_topic_name:=sas_robot_driver_coppeliasim/object/Sphere"
 
   object_interface_example_3:
     image: murilomarinho/sas:jazzy
     environment:
       - ROS_DOMAIN_ID
     command: /bin/bash -c "
-      sudo apt-get update && sudo apt-get upgrade -y
-      && ros2 run sas_robot_driver_coppeliasim object_interface_example.py --ros-args -p object_topic_name:=sas_robot_driver_coppeliasim/object/Capsule"
+      ros2 run sas_robot_driver_coppeliasim object_interface_example.py --ros-args -p object_topic_name:=sas_robot_driver_coppeliasim/object/Capsule"
