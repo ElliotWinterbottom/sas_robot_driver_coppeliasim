@@ -36,7 +36,6 @@
 
 #include <dqrobotics/interfaces/coppeliasim/DQ_CoppeliaSimInterfaceZMQ.h>
 
-
 namespace sas
 {
 
@@ -45,27 +44,26 @@ namespace sas
  */
 struct RobotDriverCoppeliaSimConfiguration
 {
-    int port;                                   ///< ZMQ port number.
-    std::string ip;                             ///< CoppeliaSim IP address.
-    int timeout = 1000;                         ///< Connection timeout in milliseconds.
-    std::vector<std::string> robot_joint_names; ///< Names of the joints to control.
+    int port;                                    ///< ZMQ port number.
+    std::string ip;                              ///< CoppeliaSim IP address.
+    int timeout = 1000;                          ///< Connection timeout in milliseconds.
+    std::vector<std::string> robot_joint_names;  ///< Names of the joints to control.
 };
 
 /**
  * @brief RobotDriver for CoppeliaSim via ZMQ.
  */
-class RobotDriverCoppeliaSim: public RobotDriver
+class RobotDriverCoppeliaSim : public RobotDriver
 {
 private:
-    RobotDriverCoppeliaSimConfiguration configuration_; ///< Driver configuration.
-    Eigen::VectorXd joint_positions_;                          ///< Cached joint positions.
-    std::shared_ptr<DQ_CoppeliaSimInterfaceZMQ> csi_;   ///< CoppeliaSim ZMQ interface.
+    RobotDriverCoppeliaSimConfiguration configuration_;  ///< Driver configuration.
+    Eigen::VectorXd joint_positions_;                    ///< Cached joint positions.
+    std::shared_ptr<DQ_CoppeliaSimInterfaceZMQ> csi_;    ///< CoppeliaSim ZMQ interface.
 
 public:
-
     // Prevent copies as usually drivers have threads
-    RobotDriverCoppeliaSim(const RobotDriverCoppeliaSim&)=delete;
-    RobotDriverCoppeliaSim()=delete;
+    RobotDriverCoppeliaSim(const RobotDriverCoppeliaSim&) = delete;
+    RobotDriverCoppeliaSim() = delete;
     ~RobotDriverCoppeliaSim();
 
     /**
@@ -73,7 +71,7 @@ public:
      * @param configuration Driver configuration parameters.
      * @param break_loops Pointer to the loop-breaking flag.
      */
-    RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration &configuration, std::atomic_bool* break_loops);
+    RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration& configuration, std::atomic_bool* break_loops);
 
     /**
      * @brief Returns current joint positions in radians.
@@ -112,6 +110,5 @@ public:
      * @brief Deinitializes the driver state.
      */
     void deinitialize() override;
-
 };
-}
+}  // namespace sas

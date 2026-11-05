@@ -28,7 +28,6 @@
  * @brief RobotDriverCoppeliaSim implementation.
  */
 
-
 #include "sas_robot_driver_coppeliasim/sas_robot_driver_coppeliasim.hpp"
 #include <dqrobotics/utils/DQ_Constants.h>
 #include <sas_core/eigen3_std_conversions.hpp>
@@ -36,18 +35,14 @@
 namespace sas
 {
 
-
-RobotDriverCoppeliaSim::RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration &configuration, std::atomic_bool* break_loops):
-    RobotDriver(std::make_shared<marinholab::sas::core::ShutdownSignaler>(break_loops)),
-    configuration_(configuration)
+RobotDriverCoppeliaSim::RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration& configuration,
+                                               std::atomic_bool* break_loops)
+    : RobotDriver(std::make_shared<marinholab::sas::core::ShutdownSignaler>(break_loops)), configuration_(configuration)
 {
     csi_ = std::make_shared<DQ_CoppeliaSimInterfaceZMQ>();
 }
 
-RobotDriverCoppeliaSim::~RobotDriverCoppeliaSim()
-{
-
-}
+RobotDriverCoppeliaSim::~RobotDriverCoppeliaSim() {}
 
 /**
  * @brief Returns current joint positions in radians.
@@ -65,7 +60,7 @@ Eigen::VectorXd RobotDriverCoppeliaSim::get_joint_positions()
  * @brief Sets joint positions and target joint positions.
  * @param desired_joint_positions_rad Desired joint positions in radians.
  */
-void RobotDriverCoppeliaSim::set_target_joint_positions(const Eigen::VectorXd &desired_joint_positions_rad)
+void RobotDriverCoppeliaSim::set_target_joint_positions(const Eigen::VectorXd& desired_joint_positions_rad)
 {
     csi_->set_joint_positions(configuration_.robot_joint_names, desired_joint_positions_rad);
     csi_->set_joint_target_positions(configuration_.robot_joint_names, desired_joint_positions_rad);
@@ -78,9 +73,7 @@ void RobotDriverCoppeliaSim::set_target_joint_positions(const Eigen::VectorXd &d
  */
 void RobotDriverCoppeliaSim::connect()
 {
-    if(!csi_->connect(configuration_.ip,
-                       configuration_.port,
-                       configuration_.timeout))
+    if (!csi_->connect(configuration_.ip, configuration_.port, configuration_.timeout))
     {
         throw std::runtime_error("::Unable to connect to CoppeliaSim.");
     }
@@ -125,9 +118,9 @@ std::tuple<Eigen::VectorXd, Eigen::VectorXd> RobotDriverCoppeliaSim::get_joint_l
 {
     //TODO: Obtain the joint limits from the simulator. This does not seem to be trivial as of now.
     int dof = get_joint_positions().size();
-    auto joint_positions_max = Eigen::VectorXd::Ones(dof)*2*pi;
+    auto joint_positions_max = Eigen::VectorXd::Ones(dof) * 2 * pi;
     auto joint_positions_min = -joint_positions_max;
     return {joint_positions_min, joint_positions_max};
 }
 
-}
+}  // namespace sas
