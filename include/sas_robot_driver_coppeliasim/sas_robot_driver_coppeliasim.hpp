@@ -69,9 +69,10 @@ public:
     /**
      * @brief Constructs the driver.
      * @param configuration Driver configuration parameters.
-     * @param break_loops Pointer to the loop-breaking flag.
+     * @param shutdown_signaler Shared shutdown signaler, typically shared with the ROS wrapper.
      */
-    RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration& configuration, std::atomic_bool* break_loops);
+    RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration& configuration,
+                           const std::shared_ptr<marinholab::sas::core::ShutdownSignaler>& shutdown_signaler);
 
     /**
      * @brief Returns current joint positions in radians.

@@ -35,9 +35,10 @@
 namespace sas
 {
 
-RobotDriverCoppeliaSim::RobotDriverCoppeliaSim(const RobotDriverCoppeliaSimConfiguration& configuration,
-                                               std::atomic_bool* break_loops)
-    : RobotDriver(std::make_shared<marinholab::sas::core::ShutdownSignaler>(break_loops)), configuration_(configuration)
+RobotDriverCoppeliaSim::RobotDriverCoppeliaSim(
+    const RobotDriverCoppeliaSimConfiguration& configuration,
+    const std::shared_ptr<marinholab::sas::core::ShutdownSignaler>& shutdown_signaler)
+    : RobotDriver(shutdown_signaler), configuration_(configuration)
 {
     csi_ = std::make_shared<DQ_CoppeliaSimInterfaceZMQ>();
 }

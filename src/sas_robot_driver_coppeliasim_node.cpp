@@ -82,8 +82,8 @@ int main(int argc, char** argv)
         RCLCPP_INFO_STREAM_ONCE(node->get_logger(), "::Parameters OK.");
 
         RCLCPP_INFO_STREAM_ONCE(node->get_logger(), "::Instantiating RobotDriverMyRobot.");
-        auto robot_driver_coppeliasim =
-            std::make_shared<sas::RobotDriverCoppeliaSim>(configuration, &kill_this_process);
+        auto shutdown_signaler = std::make_shared<marinholab::sas::core::ShutdownSignaler>(&kill_this_process);
+        auto robot_driver_coppeliasim = std::make_shared<sas::RobotDriverCoppeliaSim>(configuration, shutdown_signaler);
 
         sas::RobotDriverROSConfiguration robot_driver_ros_configuration;
         sas::get_ros_parameter(node, "thread_sampling_time_sec",
@@ -91,9 +91,8 @@ int main(int argc, char** argv)
         robot_driver_ros_configuration.robot_driver_provider_prefix = node->get_name();
 
         RCLCPP_INFO_STREAM_ONCE(node->get_logger(), "::Instantiating RobotDriverROS.");
-        sas::RobotDriverROS robot_driver_ros(
-            node, robot_driver_coppeliasim, robot_driver_ros_configuration,
-            std::make_shared<marinholab::sas::core::ShutdownSignaler>(&kill_this_process));
+        sas::RobotDriverROS robot_driver_ros(node, robot_driver_coppeliasim, robot_driver_ros_configuration,
+                                             shutdown_signaler);
         robot_driver_ros.control_loop();
     }
     catch (const std::exception& e)
