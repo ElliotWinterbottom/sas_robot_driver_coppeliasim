@@ -79,6 +79,7 @@ class SimROS2RobotManager:
         self.q_target: np.ndarray | None = None               # Target joint positions received from the driver server.
         self.q_dot_target: np.ndarray | None = None           # Target joint velocities received from the driver server.
         self.q_force_target: np.ndarray | None = None         # Target joint forces received from the driver server.
+        self._max_joint_forces = [sim.getJointTargetForce(h) for h in self.joint_handles]  # Maximum joint forces set in the scene.
         self._dynamic_control_mode = None            # Current sim.jointdynctrl_* mode of the dynamic joints.
 
     def sensing_update(self):
