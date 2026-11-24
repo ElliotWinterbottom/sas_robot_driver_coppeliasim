@@ -108,8 +108,10 @@ class SimROS2RobotManager:
         """Applies the latest joint targets from the driver server to the simulator.
 
         The last type of target received selects the control mode: target joint positions use
-        position control and target joint velocities use velocity control. Velocity targets
-        persist until a new target is received, so send zeros or a position target to stop.
+        position control, target joint velocities use velocity control, and target joint forces use force control.
+        Velocity targets persist until a new target is received, so send zeros or a position target to stop.
+        Force targets also persist until a new target is received, when a velocity or position target is received, the
+        joint force limits are restored to the values set when the robot manager is created.
         """
         active = self.rds.get_currently_active_functionality()
         if active == Functionality.PositionControl:
