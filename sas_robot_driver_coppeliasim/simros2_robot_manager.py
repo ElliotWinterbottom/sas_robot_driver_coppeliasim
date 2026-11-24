@@ -131,10 +131,6 @@ class SimROS2RobotManager:
             self._set_dynamic_control_mode(self.sim.jointdynctrl_force)
             for i in range(self.DOF):
                 self.sim.setJointTargetForce(self.joint_handles[i], self.q_force_target[i])
-
-
-                for i in range(self.DOF):
-                    self.sim.setJointTargetForce(self.joint_handles[i], self.q_force_target[i])
     def _set_dynamic_control_mode(self, mode):
         """Switches the dynamically enabled joints between position and velocity control."""
         if mode == self._dynamic_control_mode:
