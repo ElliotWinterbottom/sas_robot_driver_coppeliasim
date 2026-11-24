@@ -93,10 +93,11 @@ target joint velocities (`set/target_joint_velocities`), and joint forces (`set/
 dynamically enabled joints. In velocity control, joints with zero target velocity are locked so that they do not drift
 under gravity.
 
+
 > [!IMPORTANT]
 > Target joint velocities and forces persist until a new target is received. To stop the robot, send zero velocities or a target
 > joint position. A target joint force with the wrong number of joints sets the forces to zero (this will likely collapse the robot), a target joint velocity with the wrong number of joints stops the robot, and a target joint position
-> with the wrong number of joints is ignored.
+> with the wrong number of joints is ignored. Joints which are not dynamically enabled will ignore force commands sent to them.
 
 Velocity command example:
 ```console
